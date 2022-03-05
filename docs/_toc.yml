@@ -4,5 +4,6 @@
 format: jb-book
 root: index
 chapters:
-  - file: markdown
-  - file: plots
+  - file: 01-symbolics
+  - file: 02-modelingptoolkit
+  - file: 03-catalyst
