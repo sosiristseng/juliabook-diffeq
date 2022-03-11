@@ -12,8 +12,8 @@ stages:
 # `GIT_PUSH_TOKEN` CI/CD variable = personal access token (PAT) with write access
 auto-update:
   image: registry.gitlab.com/sosiristseng/docker-juliabook:latest
-  # tags:
-  #   - your_runner
+  tags:
+    - md705
   stage: update
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
