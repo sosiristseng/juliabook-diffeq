@@ -42,9 +42,9 @@ version = "5.0.7"
 
 [[deps.ArrayLayouts]]
 deps = ["FillArrays", "LinearAlgebra", "SparseArrays"]
-git-tree-sha1 = "8b921542ad44cba67f1487e2226446597e0a90af"
+git-tree-sha1 = "c23473c60476e62579c077534b9643ec400f792b"
 uuid = "4c555306-a7a7-4459-81d9-ec55ddd5c99a"
-version = "0.8.5"
+version = "0.8.6"
 
 [[deps.Artifacts]]
 uuid = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
@@ -230,9 +230,9 @@ version = "0.5.7"
 
 [[deps.CpuId]]
 deps = ["Markdown"]
-git-tree-sha1 = "32d125af0fb8ec3f8935896122c5e345709909e5"
+git-tree-sha1 = "fcbb72b032692610bfbdb15018ac16a36cf2e406"
 uuid = "adafc99b-e345-5852-983c-f28acb93d879"
-version = "0.3.0"
+version = "0.3.1"
 
 [[deps.Crayons]]
 git-tree-sha1 = "249fe38abf76d48563e2f4556bebd215aa317e15"
@@ -450,9 +450,9 @@ version = "0.4.2"
 
 [[deps.ForwardDiff]]
 deps = ["CommonSubexpressions", "DiffResults", "DiffRules", "LinearAlgebra", "LogExpFunctions", "NaNMath", "Preferences", "Printf", "Random", "SpecialFunctions", "StaticArrays"]
-git-tree-sha1 = "40d1546a45abd63490569695a86a2d93c2021e54"
+git-tree-sha1 = "34e6147e7686a101c245f12dba43b743c7afda96"
 uuid = "f6369f11-7733-5829-9624-2563aa707210"
-version = "0.10.26"
+version = "0.10.27"
 
 [[deps.FreeType2_jll]]
 deps = ["Artifacts", "Bzip2_jll", "JLLWrappers", "Libdl", "Pkg", "Zlib_jll"]
@@ -542,9 +542,9 @@ version = "1.0.2"
 
 [[deps.Groebner]]
 deps = ["AbstractAlgebra", "Combinatorics", "Logging", "MultivariatePolynomials", "Primes", "Random"]
-git-tree-sha1 = "18e3139ab69bfc03a8609027fd0e5572a5cffe6e"
+git-tree-sha1 = "8d5455230991c22a64f99afd3c36c476b7b8be4d"
 uuid = "0b43b601-686d-58a3-8a1c-6623616c7cd4"
-version = "0.2.3"
+version = "0.2.4"
 
 [[deps.GroupsCore]]
 deps = ["Markdown", "Random"]
@@ -1009,9 +1009,9 @@ version = "8.44.0+0"
 
 [[deps.PDMats]]
 deps = ["LinearAlgebra", "SparseArrays", "SuiteSparse"]
-git-tree-sha1 = "e8185b83b9fc56eb6456200e873ce598ebc7f262"
+git-tree-sha1 = "3114946c67ef9925204cc024a73c9e679cebe0d7"
 uuid = "90014a1f-27ba-587c-ab20-58faa44d9150"
-version = "0.11.7"
+version = "0.11.8"
 
 [[deps.Parameters]]
 deps = ["OrderedCollections", "UnPack"]
@@ -1021,9 +1021,9 @@ version = "0.12.3"
 
 [[deps.Parsers]]
 deps = ["Dates"]
-git-tree-sha1 = "3b429f37de37f1fc603cc1de4a799dc7fbe4c0b6"
+git-tree-sha1 = "1285416549ccfcdf0c50d4997a94331e88d68413"
 uuid = "69de0a69-1ddd-5017-9359-2bf0b02dc9f0"
-version = "2.3.0"
+version = "2.3.1"
 
 [[deps.Pixman_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -1244,10 +1244,10 @@ uuid = "476501e8-09a2-5ece-8869-fb82de89a1fa"
 version = "0.6.32"
 
 [[deps.SciMLBase]]
-deps = ["ArrayInterface", "CommonSolve", "ConstructionBase", "Distributed", "DocStringExtensions", "IteratorInterfaceExtensions", "LinearAlgebra", "Logging", "RecipesBase", "RecursiveArrayTools", "StaticArrays", "Statistics", "Tables", "TreeViews"]
-git-tree-sha1 = "f03796a588eba66f6bcc63cfdeda89b4a339ce4e"
+deps = ["ArrayInterface", "CommonSolve", "ConstructionBase", "Distributed", "DocStringExtensions", "IteratorInterfaceExtensions", "LinearAlgebra", "Logging", "Markdown", "RecipesBase", "RecursiveArrayTools", "StaticArrays", "Statistics", "Tables", "TreeViews"]
+git-tree-sha1 = "a5305dca1b3ebf83d9c92e2fa244424f1bdb1627"
 uuid = "0bca4576-84f4-4d90-8ffe-ffa030f20462"
-version = "1.30.0"
+version = "1.31.0"
 
 [[deps.Scratch]]
 deps = ["Dates"]
@@ -1313,9 +1313,9 @@ version = "0.1.14"
 
 [[deps.Static]]
 deps = ["IfElse"]
-git-tree-sha1 = "2114b1d8517764a8c4625a2e97f40640c7a301a7"
+git-tree-sha1 = "b1f1f60bf4f25d8b374480fb78c7b9785edf95fd"
 uuid = "aedffcd0-7271-4cad-89d0-dc628f76c6d3"
-version = "0.6.1"
+version = "0.6.2"
 
 [[deps.StaticArrays]]
 deps = ["LinearAlgebra", "Random", "Statistics"]
@@ -1397,9 +1397,9 @@ version = "0.19.7"
 
 [[deps.Symbolics]]
 deps = ["ArrayInterface", "ConstructionBase", "DataStructures", "DiffRules", "Distributions", "DocStringExtensions", "DomainSets", "Groebner", "IfElse", "Latexify", "Libdl", "LinearAlgebra", "MacroTools", "Metatheory", "NaNMath", "RecipesBase", "Reexport", "Requires", "RuntimeGeneratedFunctions", "SciMLBase", "Setfield", "SparseArrays", "SpecialFunctions", "StaticArrays", "SymbolicUtils", "TermInterface", "TreeViews"]
-git-tree-sha1 = "cda7b738cd940f124d74bbcb13503cd931440f70"
+git-tree-sha1 = "31f8130b2ee33985f10d7999ece5ed7d72c1be70"
 uuid = "0c5d862f-8b57-4792-8d23-62f2024744c7"
-version = "4.4.1"
+version = "4.4.2"
 
 [[deps.TOML]]
 deps = ["Dates"]
