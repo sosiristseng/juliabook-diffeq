@@ -4,7 +4,7 @@
 format: jb-book
 root: index
 parts:
-  - caption: Introductions
+  - caption: Getting started
     chapters:
       - file: intro/01-first-steps
   - caption: Symbolics
