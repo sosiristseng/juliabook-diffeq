@@ -7,6 +7,7 @@ parts:
   - caption: Getting started
     chapters:
       - file: intro/01-first-steps
+      - file: intro/02-sde
   - caption: Symbolics
     chapters:
       - file: symbolic/01-symbolics
