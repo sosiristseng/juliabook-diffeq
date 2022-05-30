@@ -13,3 +13,4 @@ parts:
       - file: symbolic/01-symbolics
       - file: symbolic/02-modelingptoolkit
       - file: symbolic/03-catalyst
+      - file: symbolic/04-pde
