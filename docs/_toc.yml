@@ -8,6 +8,7 @@ parts:
     chapters:
       - file: intro/01-first-steps
       - file: intro/02-sde
+      - file: intro/03-ensemble
   - caption: Symbolics
     chapters:
       - file: symbolic/01-symbolics
