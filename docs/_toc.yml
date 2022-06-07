@@ -3,15 +3,8 @@
 
 format: jb-book
 root: index
-parts:
-  - caption: Getting started
-    chapters:
-      - file: intro/01-first-steps
-      - file: intro/02-sde
-      - file: intro/03-ensemble
-  - caption: Symbolics
-    chapters:
-      - file: symbolic/01-symbolics
-      - file: symbolic/02-modelingptoolkit
-      - file: symbolic/03-catalyst
-      - file: symbolic/04-pde
+chapters:
+  - file: 01-first-steps
+  - file: 02-sde
+  - file: 03-ensemble
+  - file: 04-paramestim
