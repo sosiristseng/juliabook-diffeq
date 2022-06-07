@@ -57,13 +57,18 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Run notebooks and build website
-        run: |
-          docker run -v ${{ github.workspace }}:/work ${{ env.IMAGE_NAME }}:test jupyter-book build /work/docs -v
+        uses: addnab/docker-run-action@v3
+        with:
+          image: ${{ env.IMAGE_NAME }}:test
+          options: -v ${{ github.workspace }}:/work
+          run: |
+            find /work/docs -type f -name "*.ipynb" -print0 | parallel -0 -j2 jupyter nbconvert --to notebook --ExecutePreprocessor.timeout=600 --ExecutePreprocessor.kernel_name=julia-1.7 --execute --inplace {}
+            jupyter-book build /work/docs -v
 
       - name: Push Docker Image
         # Do not push on PR's
         if: github.ref == 'refs/heads/main'
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: .
           file: .ci/Dockerfile
