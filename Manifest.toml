@@ -556,12 +556,6 @@ git-tree-sha1 = "1e5490a51b4e9d07e8b04836f6008f46b48aaa87"
 uuid = "d2c73de3-f751-5644-a686-071e5b155ba9"
 version = "0.64.3+0"
 
-[[deps.GalacticOptim]]
-deps = ["ArrayInterfaceCore", "ConsoleProgressMonitor", "DiffResults", "DocStringExtensions", "Logging", "LoggingExtras", "Pkg", "Printf", "ProgressLogging", "Reexport", "Requires", "SciMLBase", "TerminalLoggers"]
-git-tree-sha1 = "6725ceb3d9afbbae9ad08aa7ef206a6ab9559600"
-uuid = "a75be94c-b780-496d-a8a9-0878b188d577"
-version = "3.4.0"
-
 [[deps.GenericSchur]]
 deps = ["LinearAlgebra", "Printf"]
 git-tree-sha1 = "fb69b2a645fa69ba5f474af09221b9308b160ce6"
@@ -1086,6 +1080,12 @@ deps = ["Compat", "FillArrays", "ForwardDiff", "LineSearches", "LinearAlgebra", 
 git-tree-sha1 = "7a28efc8e34d5df89fc87343318b0a8add2c4021"
 uuid = "429524aa-4258-5aef-a3af-852621145aeb"
 version = "1.7.0"
+
+[[deps.Optimization]]
+deps = ["ArrayInterfaceCore", "ConsoleProgressMonitor", "DiffResults", "DocStringExtensions", "Logging", "LoggingExtras", "Pkg", "Printf", "ProgressLogging", "Reexport", "Requires", "SciMLBase", "SparseArrays", "TerminalLoggers"]
+git-tree-sha1 = "ccba5479434879569cf6bfea0580b4b46d459651"
+uuid = "7f7a1694-90dd-40f0-9382-eb1efda571ba"
+version = "3.6.0"
 
 [[deps.Opus_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
