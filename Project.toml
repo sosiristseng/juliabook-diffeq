@@ -1,6 +1,7 @@
 [deps]
 BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
 Catalyst = "479239e8-5488-4da2-87a7-35f2df7eef83"
+DiffEqParamEstim = "1130ab10-4a5a-5621-a13d-e4788d82bd4c"
 DifferentialEquations = "0c46a032-eb83-5123-abaf-570d42b7fbaa"
 DomainSets = "5b8099bc-c8ec-5219-889f-1d9e522a28bf"
 ForwardDiff = "f6369f11-7733-5829-9624-2563aa707210"
