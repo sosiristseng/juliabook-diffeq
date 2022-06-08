@@ -31,28 +31,5 @@ jobs:
         run: pip install -r .ci/requirements.txt
         if: steps.cache-virtualenv.outputs.cache-hit != 'true'
 
-      - name: Setup Julia ${{ env.JULIA_VER }}
-        uses: julia-actions/setup-julia@v1
-        with:
-          version: ${{ env.JULIA_VER }}
-      - name: Cache Julia
-        uses: actions/cache@v3
-        env:
-          cache-name: "julia"
-        with:
-          path: |
-            ~/.julia/artifacts
-            ~/.julia/compiled
-            ~/.julia/packages
-            ~/.julia/registries
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/Project.toml') }}-${{ hashFiles('**/Manifest.toml') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/Project.toml') }}-
-            ${{ runner.os }}-${{ env.cache-name }}-
-      - name: Install Julia dependencies and IJulia kernel
-        run: |
-          julia --threads=auto --project=@. --color=yes -e 'using Pkg; Pkg.instantiate();'
-          julia --threads=auto --project=@. --color=yes build.jl
-
       - name: Check Links
         run: jupyter-book build docs --builder linkcheck
