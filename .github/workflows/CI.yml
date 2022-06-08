@@ -61,7 +61,7 @@ jobs:
 
       - name: Build Jupyter Books
         run: |
-          find docs -type f -name "*.ipynb" -print0 | parallel -0 -j2 jupyter nbconvert --to notebook --ExecutePreprocessor.timeout=600 --execute --allow-errors --inplace {}
+          find docs -type f -name "*.ipynb" -print0 | parallel -0 -j2 jupyter nbconvert --to notebook --ExecutePreprocessor.timeout=600 --execute --inplace {}
           jupyter-book build docs -v
 
       - name: Deploy Website
