@@ -9,7 +9,3 @@ chapters:
   - file: 03-ensemble
   - file: 04-paramestim
   - file: 05-callback
-  - file: 20-symbolics
-  - file: 21-modelingptoolkit
-  - file: 22-catalyst
-  - file: 23-pde
