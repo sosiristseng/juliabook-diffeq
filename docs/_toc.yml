@@ -1,6 +1,5 @@
 # Table of contents
 # Learn more at https://jupyterbook.org/customize/toc.html
-
 format: jb-book
 root: index
 parts:
@@ -19,3 +18,7 @@ parts:
       - file: ch02-02-modelingptoolkit
       - file: ch02-03-catalyst
       - file: ch02-04-pde
+  - caption: Models
+    numbered: True
+    chapters:
+      - file: ch03-01-neuron
