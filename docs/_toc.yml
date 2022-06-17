@@ -17,8 +17,12 @@ parts:
       - file: ch02-01-symbolics
       - file: ch02-02-modelingptoolkit
       - file: ch02-03-catalyst
-      - file: ch02-04-pde
   - caption: Models
     numbered: True
     chapters:
       - file: ch03-01-neuron
+  - caption: PDE
+    numbered: True
+    chapters:
+      - file: ch04-01-pde
+      - file: ch04-02-pde
