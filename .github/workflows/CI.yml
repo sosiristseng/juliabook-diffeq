@@ -76,6 +76,12 @@ jobs:
       - name: Build Notebooks
         run: docker run -v ${{ github.workspace }}:/work ${{ env.IMAGE_NAME }}:test jupyter nbconvert --to notebook --ExecutePreprocessor.timeout=600 --execute --inplace /work/docs/${{ matrix.notebook }}
 
+      - name: Upload Notebooks
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.notebook }}
+          path: docs/${{ matrix.notebook }}
+
   jupyter-book:
     needs: [run-code, docker]
     runs-on: ubuntu-latest
