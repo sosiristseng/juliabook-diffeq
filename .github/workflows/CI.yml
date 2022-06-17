@@ -124,7 +124,7 @@ jobs:
           cache-from: type=gha
 
       - name: Build website
-        run: docker run -v ${{ github.workspace }}:/work ${{ env.IMAGE_NAME }}:test jupyter-book build /work/docs -vvv
+        run: docker run -v ${{ github.workspace }}:/work ${{ env.IMAGE_NAME }}:test jupyter-book build /work/docs -v
 
       - name: Push Docker Image
         # Do not push on PR's
