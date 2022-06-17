@@ -3,9 +3,12 @@
 
 format: jb-book
 root: index
-chapters:
-  - file: 01-first-steps
-  - file: 02-sde
-  - file: 03-ensemble
-  - file: 04-paramestim
-  - file: 05-callback
+parts:
+  - caption: Getting started
+    numbered: True
+    chapters:
+      - file: ch01-01-first-steps
+      - file: ch01-02-sde
+      - file: ch01-03-ensemble
+      - file: ch01-04-paramestim
+      - file: ch01-05-callback
