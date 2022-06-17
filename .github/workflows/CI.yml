@@ -84,7 +84,7 @@ jobs:
           path: docs/${{ matrix.notebook }}
 
   jupyter-book:
-    needs: [run-code, docker]
+    needs: [execute, docker]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
