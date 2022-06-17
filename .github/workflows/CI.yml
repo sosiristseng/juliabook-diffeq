@@ -45,16 +45,16 @@ jobs:
         notebook:
           - index.ipynb
           - ch01-01-first-steps.ipynb
-          - ch01-02-sde.ipynb
-          - ch01-03-ensemble.ipynb
-          - ch01-04-paramestim.ipynb
-          - ch01-05-callback.ipynb
-          - ch02-01-symbolics.ipynb
-          - ch02-02-modelingptoolkit.ipynb
-          - ch02-03-catalyst.ipynb
-          - ch03-01-neuron.ipynb
-          - ch04-01-pde.ipynb
-          - ch04-02-pde.ipynb
+          # - ch01-02-sde.ipynb
+          # - ch01-03-ensemble.ipynb
+          # - ch01-04-paramestim.ipynb
+          # - ch01-05-callback.ipynb
+          # - ch02-01-symbolics.ipynb
+          # - ch02-02-modelingptoolkit.ipynb
+          # - ch02-03-catalyst.ipynb
+          # - ch03-01-neuron.ipynb
+          # - ch04-01-pde.ipynb
+          # - ch04-02-pde.ipynb
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
