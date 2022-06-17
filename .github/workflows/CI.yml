@@ -37,7 +37,7 @@ jobs:
           tags: ${{ env.IMAGE_NAME }}:test
           cache-from: type=gha
           cache-to: type=gha,mode=max
-  run-code:
+  execute:
     needs: docker
     strategy:
       fail-fast: false
