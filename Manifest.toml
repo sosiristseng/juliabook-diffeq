@@ -78,9 +78,9 @@ version = "0.1.1"
 
 [[deps.ArrayLayouts]]
 deps = ["FillArrays", "LinearAlgebra", "SparseArrays"]
-git-tree-sha1 = "ce5666a4081cfb66035a1a46e45a34ce889bac26"
+git-tree-sha1 = "26c659b14c4dc109b6b9c3398e4455eebc523814"
 uuid = "4c555306-a7a7-4459-81d9-ec55ddd5c99a"
-version = "0.8.7"
+version = "0.8.8"
 
 [[deps.Artifacts]]
 uuid = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
@@ -371,9 +371,9 @@ version = "0.1.0+0"
 
 [[deps.DiffEqBase]]
 deps = ["ArrayInterfaceCore", "ChainRulesCore", "DataStructures", "Distributions", "DocStringExtensions", "FastBroadcast", "ForwardDiff", "FunctionWrappers", "LinearAlgebra", "Logging", "MuladdMacro", "NonlinearSolve", "Parameters", "Printf", "RecursiveArrayTools", "Reexport", "Requires", "SciMLBase", "Setfield", "SparseArrays", "StaticArrays", "Statistics", "ZygoteRules"]
-git-tree-sha1 = "610fa40ea973af34ddbf3c99f2328980dd2f998a"
+git-tree-sha1 = "2764b99912cfe319815983acf189507fd95074f1"
 uuid = "2b5f629d-d688-5b77-993f-72d75c75574e"
-version = "6.89.6"
+version = "6.89.7"
 
 [[deps.DiffEqCallbacks]]
 deps = ["DataStructures", "DiffEqBase", "ForwardDiff", "LinearAlgebra", "NLsolve", "Parameters", "RecipesBase", "RecursiveArrayTools", "SciMLBase", "StaticArrays"]
@@ -798,9 +798,9 @@ version = "2.1.2+0"
 
 [[deps.JuliaFormatter]]
 deps = ["CSTParser", "CommonMark", "DataStructures", "Pkg", "Tokenize"]
-git-tree-sha1 = "572cbc7adc60b5f01fbb86c2cd624b308d3cb514"
+git-tree-sha1 = "9f1e11d5bf6fff5a7592f2aa602fe6eb4c801da7"
 uuid = "98e50ef6-434e-11e9-1051-2b60c6c9e899"
-version = "1.0.2"
+version = "1.0.3"
 
 [[deps.KLU]]
 deps = ["LinearAlgebra", "SparseArrays", "SuiteSparse_jll"]
@@ -1473,9 +1473,9 @@ version = "0.0.1"
 
 [[deps.SciMLBase]]
 deps = ["ArrayInterfaceCore", "CommonSolve", "ConstructionBase", "Distributed", "DocStringExtensions", "IteratorInterfaceExtensions", "LinearAlgebra", "Logging", "Markdown", "RecipesBase", "RecursiveArrayTools", "StaticArrays", "Statistics", "Tables", "TreeViews"]
-git-tree-sha1 = "2bfe49f836ecea8db844ebe3b6a3ac3f2d1544a0"
+git-tree-sha1 = "56eea0b53a1bda5fb7747e0a0795b911d724955e"
 uuid = "0bca4576-84f4-4d90-8ffe-ffa030f20462"
-version = "1.40.2"
+version = "1.41.1"
 
 [[deps.Scratch]]
 deps = ["Dates"]
@@ -1599,9 +1599,9 @@ version = "0.3.10"
 
 [[deps.StructArrays]]
 deps = ["Adapt", "DataAPI", "StaticArrays", "Tables"]
-git-tree-sha1 = "9abba8f8fb8458e9adf07c8a2377a070674a24f1"
+git-tree-sha1 = "9097e2914e179ab1d45330403fae880630acea0b"
 uuid = "09ab397b-f2b6-538f-b94a-2f83cf4a842a"
-version = "0.6.8"
+version = "0.6.9"
 
 [[deps.StructIO]]
 deps = ["Test"]
