@@ -6,7 +6,7 @@ parts:
   - caption: Getting started
     numbered: True
     chapters:
-      - file: ch01-01-first-steps
+      - file: ch01-01-ode
       - file: ch01-02-sde
       - file: ch01-03-ensemble
       - file: ch01-04-paramestim
@@ -24,5 +24,5 @@ parts:
   - caption: PDE
     numbered: True
     chapters:
-      - file: ch04-01-pde
-      - file: ch04-02-pde
+      - file: ch04-01-heat
+      - file: ch04-02-brusselator

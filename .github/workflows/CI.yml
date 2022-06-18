@@ -44,7 +44,7 @@ jobs:
       matrix:
         notebook:
           - index
-          - ch01-01-first-steps
+          - ch01-01-ode
           - ch01-02-sde
           - ch01-03-ensemble
           - ch01-04-paramestim
@@ -53,8 +53,8 @@ jobs:
           - ch02-02-modelingptoolkit
           - ch02-03-catalyst
           - ch03-01-neuron
-          - ch04-01-pde
-          - ch04-02-pde
+          - ch04-01-heat
+          - ch04-02-brusselator
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
