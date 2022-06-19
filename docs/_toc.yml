@@ -17,6 +17,7 @@ parts:
       - file: ch02-01-symbolics
       - file: ch02-02-modelingptoolkit
       - file: ch02-03-catalyst
+      - file: ch02-04-optimization
   - caption: Models
     numbered: True
     chapters:

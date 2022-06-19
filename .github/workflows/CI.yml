@@ -52,6 +52,7 @@ jobs:
           - ch02-01-symbolics
           - ch02-02-modelingptoolkit
           - ch02-03-catalyst
+          - ch02-04-optimization
           - ch03-01-neuron
           - ch04-01-heat
           - ch04-02-brusselator
