@@ -1,9 +1,5 @@
 name: Check markdown links
 
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
-
 on:
   workflow_dispatch:
   schedule:
@@ -13,7 +9,7 @@ jobs:
   linkcheck:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/sosiristseng/docker-juliabook:1.7.3.4
+      image: ghcr.io/sosiristseng/juliabook-diffeq:latest
     steps:
       - uses: actions/checkout@v3
       - run: jupyter-book build docs/ --builder linkcheck
