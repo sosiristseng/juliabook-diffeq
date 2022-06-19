@@ -13,10 +13,7 @@ jobs:
   linkcheck:
     runs-on: ubuntu-latest
     container:
-      image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.github_token }}
+      image: ghcr.io/sosiristseng/docker-juliabook:1.7.3.4
     steps:
       - uses: actions/checkout@v3
       - run: jupyter-book build docs/ --builder linkcheck
