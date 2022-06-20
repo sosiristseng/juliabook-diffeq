@@ -8,11 +8,7 @@ on:
 jobs:
   linkcheck:
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/sosiristseng/juliabook-diffeq:latest
     steps:
       - uses: actions/checkout@v3
-      - run: jupyter-book build docs/ --builder linkcheck
-
-      # - name: Build Jupyter Books
-      #   run: docker run -v ${{ github.workspace }}:/work ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest jupyter-book build /work/docs --builder linkcheck
+      - name: Build Jupyter Books
+        run: docker run -v ${{ github.workspace }}:/work ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest jupyter-book build /work/docs --builder linkcheck
