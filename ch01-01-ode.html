@@ -1,0 +1,1196 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>1. Solving Ordinary Differential Equations (ODEs) &#8212; Julia Differential Equations</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. Stochastic Differential Equations (SDEs) and Random ODEs (RODEs)" href="ch01-02-sde.html" />
+    <link rel="prev" title="Learning Julia Differential Equations" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Julia Differential Equations</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Learning Julia Differential Equations
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   1. Solving Ordinary Differential Equations (ODEs)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch01-02-sde.html">
+   2. Stochastic Differential Equations (SDEs) and Random ODEs (RODEs)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch01-03-ensemble.html">
+   3. Parallel Ensemble Simulations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch01-04-paramestim.html">
+   4. Parameter estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch01-05-callback.html">
+   5. Callbacks and Events
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Symbolic modeling
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch02-01-symbolics.html">
+   6. Symbolic calculations in Julia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch02-02-modelingptoolkit.html">
+   7. ModelingToolkit.jl
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch02-03-catalyst.html">
+   9. Catalyst
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch02-04-optimization.html">
+   12. Optimization Problems
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Models
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch03-01-neuron.html">
+   13. Spiking Neural Systems
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  PDE
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch04-01-heat.html">
+   14. Steady State Heat Equation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch04-02-brusselator.html">
+   15. Brusselator PDE
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/sosiristseng/juliabook-diffeq/main?urlpath=tree/docs/ch01-01-ode.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/sosiristseng/juliabook-diffeq"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/ch01-01-ode.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#radioactive-decay">
+   1.1. Radioactive decay
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#standard-operating-procedures">
+     1.1.1. Standard operating procedures
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualization">
+     1.1.2. Visualization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solution-handling">
+     1.1.3. Solution handling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-sir-model">
+   1.2. The SIR model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     1.2.1. Solution handling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lorenz-system">
+   1.3. Lorenz system
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     1.3.1. Visualization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#non-autonomous-odes">
+   1.4. Non-autonomous ODEs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-ode-system">
+   1.5. Linear ODE system
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Solving Ordinary Differential Equations (ODEs)</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#radioactive-decay">
+   1.1. Radioactive decay
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#standard-operating-procedures">
+     1.1.1. Standard operating procedures
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualization">
+     1.1.2. Visualization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solution-handling">
+     1.1.3. Solution handling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-sir-model">
+   1.2. The SIR model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     1.2.1. Solution handling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lorenz-system">
+   1.3. Lorenz system
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     1.3.1. Visualization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#non-autonomous-odes">
+   1.4. Non-autonomous ODEs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-ode-system">
+   1.5. Linear ODE system
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="solving-ordinary-differential-equations-odes">
+<h1><span class="section-number">1. </span>Solving Ordinary Differential Equations (ODEs)<a class="headerlink" href="#solving-ordinary-differential-equations-odes" title="Permalink to this headline">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://diffeq.sciml.ai/dev/index.html">DifferentialEquations.jl docs</a></p></li>
+</ul>
+<section id="radioactive-decay">
+<h2><span class="section-number">1.1. </span>Radioactive decay<a class="headerlink" href="#radioactive-decay" title="Permalink to this headline">#</a></h2>
+<p>How to define your model, state variables, initial (and/or boundary) conditions, and parameters.</p>
+<p>As a simple example, the concentration of a decaying nuclear isotope could be described as an exponential decay:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{d}{dt}C(t) = - \lambda C(t)
+\]</div>
+<p><strong>State variable(s)</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(C(t)\)</span>: The concentration of a decaying nuclear isotope.</p></li>
+</ul>
+<p><strong>Parameter(s)</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\lambda\)</span>: The rate constant of decay. The half-life <span class="math notranslate nohighlight">\(t_{\frac{1}{2}} = \frac{ln2}{\lambda}\)</span></p></li>
+</ul>
+<section id="standard-operating-procedures">
+<h3><span class="section-number">1.1.1. </span>Standard operating procedures<a class="headerlink" href="#standard-operating-procedures" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Define a model function representing the right-hand-side (RHS) of the sysstem.</p>
+<ul>
+<li><p>Out-of-place form: <code class="docutils literal notranslate"><span class="pre">f(u,</span> <span class="pre">p,</span> <span class="pre">t)</span></code> where <code class="docutils literal notranslate"><span class="pre">u</span></code> is the state variable(s), <code class="docutils literal notranslate"><span class="pre">p</span></code> is the parameter(s), and <code class="docutils literal notranslate"><span class="pre">t</span></code> is the independent variable (usually time). The output is the right hand side (RHS) of the differential equation system.</p></li>
+<li><p>In-place form: <code class="docutils literal notranslate"><span class="pre">f!(du,</span> <span class="pre">u,</span> <span class="pre">p,</span> <span class="pre">t)</span></code>, where the output is saved to <code class="docutils literal notranslate"><span class="pre">du</span></code>. The rest is the same as the out of place form. The in-place form has potential performance benefits since it allocates less arrays than the out-of-place form.</p></li>
+</ul>
+</li>
+<li><p>Initial conditions (<code class="docutils literal notranslate"><span class="pre">u0</span></code>) for the state variable(s).</p></li>
+<li><p>(Optional) parameter(s) <code class="docutils literal notranslate"><span class="pre">p</span></code>.</p></li>
+<li><p>Define a problem (e.g. <code class="docutils literal notranslate"><span class="pre">ODEProblem</span></code>) using the modeling function (<code class="docutils literal notranslate"><span class="pre">f</span></code>), initial conditions (<code class="docutils literal notranslate"><span class="pre">u0</span></code>), simulation time span (<code class="docutils literal notranslate"><span class="pre">tspan</span> <span class="pre">==</span> <span class="pre">(tstart,</span> <span class="pre">tend)</span></code>), and parameter(s) <code class="docutils literal notranslate"><span class="pre">p</span></code>.</p></li>
+<li><p>Solve the problem by calling <code class="docutils literal notranslate"><span class="pre">solve(prob)</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">DifferentialEquations</span><span class="w"></span>
+<span class="k">using</span><span class="w"> </span><span class="n">Plots</span><span class="w"></span>
+
+<span class="c"># The Exponential decay ODE model, out-of-place form</span><span class="w"></span>
+<span class="n">expdecay</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u</span><span class="w"></span>
+
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mf">1.0</span><span class="w"> </span><span class="c"># Parameter</span><span class="w"></span>
+<span class="n">u0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="c"># Initial condition</span><span class="w"></span>
+<span class="n">tspan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">)</span><span class="w"> </span><span class="c"># Simulation start and end time points</span><span class="w"></span>
+<span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ODEProblem</span><span class="p">(</span><span class="n">expdecay</span><span class="p">,</span><span class="w"> </span><span class="n">u0</span><span class="p">,</span><span class="w"> </span><span class="n">tspan</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="c"># Define the problem</span><span class="w"></span>
+<span class="n">sol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span><span class="n">prob</span><span class="p">)</span><span class="w"> </span><span class="c"># Solve the problem</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>retcode: Success
+Interpolation: specialized 4th order &quot;free&quot; interpolation, specialized 2nd order &quot;free&quot; stiffness-aware interpolation
+t: 8-element Vector{Float64}:
+ 0.0
+ 0.10001999200479662
+ 0.34208427873632274
+ 0.6553980290285384
+ 1.0312652902321524
+ 1.4709406498424789
+ 1.9659577002710475
+ 2.0
+u: 8-element Vector{Float64}:
+ 1.0
+ 0.9048193287657775
+ 0.7102883564034526
+ 0.5192354320104405
+ 0.35655575232768816
+ 0.2297097760377979
+ 0.14002246806154703
+ 0.13533600284000216
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualization">
+<h3><span class="section-number">1.1.2. </span>Visualization<a class="headerlink" href="#visualization" title="Permalink to this headline">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">plot(sol)</span></code> directly visualizes the time series of the state variable(s) thanks to built-in plot recipe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Plots</span><span class="w"></span>
+<span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span><span class="w"> </span><span class="c"># Visualize the solution</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch01-01-ode_3_0.svg" src="_images/ch01-01-ode_3_0.svg" /></div>
+</div>
+</section>
+<section id="solution-handling">
+<h3><span class="section-number">1.1.3. </span>Solution handling<a class="headerlink" href="#solution-handling" title="Permalink to this headline">#</a></h3>
+<p>Docs: <a class="reference external" href="https://diffeq.sciml.ai/stable/basics/solution/">https://diffeq.sciml.ai/stable/basics/solution/</a></p>
+<p><code class="docutils literal notranslate"><span class="pre">sol(t)</span></code>: solution at time <code class="docutils literal notranslate"><span class="pre">t</span></code> with interpolations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span><span class="w">  </span><span class="c"># </span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3678796381978157
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">sol.t</span></code>: time points of the solution. Notice <em>t=1</em> may not in one of the time points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8-element Vector{Float64}:
+ 0.0
+ 0.10001999200479662
+ 0.34208427873632274
+ 0.6553980290285384
+ 1.0312652902321524
+ 1.4709406498424789
+ 1.9659577002710475
+ 2.0
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">sol.u</span></code>: The solution at time points <code class="docutils literal notranslate"><span class="pre">sol.t</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span><span class="o">.</span><span class="n">u</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8-element Vector{Float64}:
+ 1.0
+ 0.9048193287657775
+ 0.7102883564034526
+ 0.5192354320104405
+ 0.35655575232768816
+ 0.2297097760377979
+ 0.14002246806154703
+ 0.13533600284000216
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="the-sir-model">
+<h2><span class="section-number">1.2. </span>The SIR model<a class="headerlink" href="#the-sir-model" title="Permalink to this headline">#</a></h2>
+<p>A more complicated example is the <a class="reference external" href="https://www.maa.org/press/periodicals/loci/joma/the-sir-model-for-spread-of-disease-the-differential-equation-model">SIR model</a> describing infectious disease spreading. There are more state variables and parameters.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\frac{d}{dt}S(t) &amp;= - \beta S(t)I(t)  \\
+\frac{d}{dt}I(t) &amp;= \beta S(t)I(t)  - \gamma I(t)  \\
+\frac{d}{dt}R(t) &amp;= \gamma I(t)
+\end{align}
+\end{split}\]</div>
+<p><strong>State variable(s)</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(S(t)\)</span> : the fraction of susceptible people</p></li>
+<li><p><span class="math notranslate nohighlight">\(I(t)\)</span> : the fraction of infectious people</p></li>
+<li><p><span class="math notranslate nohighlight">\(R(t)\)</span> : the fraction of recovered (or removed) people</p></li>
+</ul>
+<p><strong>Parameter(s)</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span> : the rate of infection when susceptible and infectious people meet</p></li>
+<li><p><span class="math notranslate nohighlight">\(\gamma\)</span> : the rate of recovery of infectious people</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">DifferentialEquations</span><span class="w"></span>
+<span class="k">using</span><span class="w"> </span><span class="n">Plots</span><span class="w"></span>
+
+<span class="c"># SIR model, in-place form</span><span class="w"></span>
+<span class="k">function</span><span class="w"> </span><span class="n">sir!</span><span class="p">(</span><span class="n">du</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="p">,</span><span class="n">t</span><span class="p">)</span><span class="w"></span>
+<span class="w">	</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="w"></span>
+<span class="w">	</span><span class="n">β</span><span class="p">,</span><span class="w"> </span><span class="n">γ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="w"></span>
+<span class="w">	</span><span class="n">v1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">β</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="w">	</span><span class="n">v2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">γ</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="w">    </span><span class="n">du</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">v1</span><span class="w"></span>
+<span class="w">    </span><span class="n">du</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">v2</span><span class="w"></span>
+<span class="w">    </span><span class="n">du</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v2</span><span class="w"></span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nb">nothing</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+
+<span class="c"># Parameters of the SIR model</span><span class="w"></span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">β</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="n">γ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.3</span><span class="p">)</span><span class="w"></span>
+<span class="n">u0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0.99</span><span class="p">,</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w"> </span><span class="mf">0.00</span><span class="p">]</span><span class="w">  </span><span class="c"># s, i, r</span><span class="w"></span>
+<span class="n">tspan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">20.0</span><span class="p">)</span><span class="w"></span>
+
+<span class="c"># Define a problem</span><span class="w"></span>
+<span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ODEProblem</span><span class="p">(</span><span class="n">sir!</span><span class="p">,</span><span class="w"> </span><span class="n">u0</span><span class="p">,</span><span class="w"> </span><span class="n">tspan</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"></span>
+
+<span class="c"># Solve the problem</span><span class="w"></span>
+<span class="n">sol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span><span class="n">prob</span><span class="p">)</span><span class="w"></span>
+
+<span class="c"># Visualize the solution</span><span class="w"></span>
+<span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;S&quot;</span><span class="w"> </span><span class="s">&quot;I&quot;</span><span class="w"> </span><span class="s">&quot;R&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">legend</span><span class="o">=</span><span class="ss">:right</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch01-01-ode_11_0.svg" src="_images/ch01-01-ode_11_0.svg" /></div>
+</div>
+<section id="id1">
+<h3><span class="section-number">1.2.1. </span>Solution handling<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">sol[i,</span> <span class="pre">j]</span></code>: <code class="docutils literal notranslate"><span class="pre">i</span></code>th component at timestep <code class="docutils literal notranslate"><span class="pre">j</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Float64}:
+ 0.9890894703413342
+ 0.010634484617786016
+ 0.0002760450408797849
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9890894703413342
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">sol[i,</span> <span class="pre">:]</span></code>: the timeseries for the <code class="docutils literal notranslate"><span class="pre">i</span></code>th component.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">:</span><span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17-element Vector{Float64}:
+ 0.99
+ 0.9890894703413342
+ 0.985833159331863
+ 0.9795270525087807
+ 0.9689082161766913
+ 0.9490552303913907
+ 0.9118629477834834
+ 0.83988711099089
+ 0.7075842208271159
+ 0.5081460371757575
+ 0.31213222200646223
+ 0.18215683750565148
+ 0.10427205838453524
+ 0.07386737657579155
+ 0.05545029045782678
+ 0.047334991613510125
+ 0.04522885458990323
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">sol(t,idxs=1)</span></code>: the 1st element in time point(s) <code class="docutils literal notranslate"><span class="pre">t</span></code> with interpolation. <code class="docutils literal notranslate"><span class="pre">t</span></code> can be a scalar (single point) or an vector-like sequence. (multiple time points)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">idxs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.28576194586859216
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span><span class="p">(</span><span class="mf">0.0</span><span class="o">:</span><span class="mf">0.1</span><span class="o">:</span><span class="mf">20.0</span><span class="p">,</span><span class="w"> </span><span class="n">idxs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>t: 0.0:0.1:20.0
+u: 201-element Vector{Float64}:
+ 0.01
+ 0.010713819530291442
+ 0.011477376329634038
+ 0.012293955863322832
+ 0.013167034902663069
+ 0.014100286700885258
+ 0.015097588761311277
+ 0.01616303136064275
+ 0.01730091874845445
+ 0.0185157717800971
+ 0.019812342119400837
+ 0.021195608353497077
+ 0.022670772696080404
+ ⋮
+ 0.03842222949435219
+ 0.03746172764830135
+ 0.03652459823604228
+ 0.0356103082327585
+ 0.03471833422623712
+ 0.03384816241686911
+ 0.03299928861764899
+ 0.032171218254175085
+ 0.031363466364649484
+ 0.030575557599877796
+ 0.02980702622326952
+ 0.02905741611083769
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="lorenz-system">
+<h2><span class="section-number">1.3. </span>Lorenz system<a class="headerlink" href="#lorenz-system" title="Permalink to this headline">#</a></h2>
+<p>The Lorenz system is a system of ordinary differential equations having chaotic solutions for certain parameter values and initial conditions. (<a class="reference external" href="https://en.wikipedia.org/wiki/Lorenz_system">Wikipedia</a>)</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+  \frac{dx}{dt} &amp;=&amp; \sigma(y-x) \\
+  \frac{dy}{dt} &amp;=&amp; x(\rho - z) -y \\
+  \frac{dz}{dt} &amp;=&amp; xy - \beta z
+\end{align}
+\end{split}\]</div>
+<p>In this example, we will use <a class="reference external" href="https://github.com/SciML/LabelledArrays.jl">LabelledArrays.jl</a> to get DSL-like syntax.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">LabelledArrays</span><span class="w"></span>
+<span class="k">using</span><span class="w"> </span><span class="n">DifferentialEquations</span><span class="w"></span>
+<span class="k">using</span><span class="w"> </span><span class="n">Plots</span><span class="w"></span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">lorenz!</span><span class="p">(</span><span class="n">du</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">t</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">du</span><span class="o">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="o">.</span><span class="n">σ</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">y</span><span class="o">-</span><span class="n">u</span><span class="o">.</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">du</span><span class="o">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="o">.</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">ρ</span><span class="o">-</span><span class="n">u</span><span class="o">.</span><span class="n">z</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">u</span><span class="o">.</span><span class="n">y</span><span class="w"></span>
+<span class="w">    </span><span class="n">du</span><span class="o">.</span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="o">.</span><span class="n">x</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">p</span><span class="o">.</span><span class="n">β</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">z</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+
+<span class="n">u0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LVector</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span><span class="w"></span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LVector</span><span class="p">(</span><span class="n">σ</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span><span class="w"> </span><span class="n">ρ</span><span class="o">=</span><span class="mf">28.0</span><span class="p">,</span><span class="w"> </span><span class="n">β</span><span class="o">=</span><span class="mi">8</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+<span class="n">tspan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">100.0</span><span class="p">)</span><span class="w"></span>
+<span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ODEProblem</span><span class="p">(</span><span class="n">lorenz!</span><span class="p">,</span><span class="n">u0</span><span class="p">,</span><span class="n">tspan</span><span class="p">,</span><span class="n">p</span><span class="p">)</span><span class="w"></span>
+<span class="n">sol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span><span class="n">prob</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>retcode: Success
+Interpolation: specialized 4th order &quot;free&quot; interpolation, specialized 2nd order &quot;free&quot; stiffness-aware interpolation
+t: 1289-element Vector{Float64}:
+   0.0
+   3.5678604836301404e-5
+   0.0003924646531993154
+   0.0032624087100077666
+   0.009058076582749423
+   0.016956470605311864
+   0.027689959227781235
+   0.04185635103821218
+   0.060240410627700816
+   0.0836854113984534
+   0.11336499269451543
+   0.14862181409827
+   0.18703978025370946
+   ⋮
+  99.3397852599881
+  99.40421692882006
+  99.4725041528708
+  99.5412045549744
+  99.6085310903818
+  99.67192934036703
+  99.72954041869967
+  99.78291962638104
+  99.84176034083528
+  99.90666445162192
+  99.98069072555015
+ 100.0
+u: 1289-element Vector{LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}}:
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; 1.0
+ :y =&gt; 0.0
+ :z =&gt; 0.0
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; 0.9996434557625105
+ :y =&gt; 0.0009988049817849058
+ :z =&gt; 1.781434788799189e-8
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; 0.9961045497425811
+ :y =&gt; 0.010965399721242457
+ :z =&gt; 2.1469553658389193e-6
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; 0.9693591550149778
+ :y =&gt; 0.08977063252764937
+ :z =&gt; 0.0001438019170127846
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; 0.924204355043198
+ :y =&gt; 0.242289149116772
+ :z =&gt; 0.0010461625397616113
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; 0.8800455796215916
+ :y =&gt; 0.4387364900041282
+ :z =&gt; 0.0034242599668253874
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; 0.8483309836977301
+ :y =&gt; 0.6915629475762161
+ :z =&gt; 0.008487624968655677
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; 0.8495036679850485
+ :y =&gt; 1.0145426495980538
+ :z =&gt; 0.018212090123888365
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; 0.9139069520070257
+ :y =&gt; 1.4425599557988966
+ :z =&gt; 0.03669382071284047
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; 1.0888638157267199
+ :y =&gt; 2.0523265628455114
+ :z =&gt; 0.07402573450924264
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; 1.4608626762755592
+ :y =&gt; 3.020671976368475
+ :z =&gt; 0.1600393550722158
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; 2.162723385463875
+ :y =&gt; 4.6333636144497445
+ :z =&gt; 0.3771173678677324
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; 3.3684642325435394
+ :y =&gt; 7.267693727122864
+ :z =&gt; 0.9363555414291386
+ ⋮
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; -14.224048527907067
+ :y =&gt; -10.302447209581723
+ :z =&gt; 38.30901904228574
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; -9.959718639178652
+ :y =&gt; -1.896199116499529
+ :z =&gt; 36.478535233428126
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; -4.955693450392641
+ :y =&gt; 1.0258352517822007
+ :z =&gt; 30.46120198559877
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; -1.9507301001522703
+ :y =&gt; 0.9739739949074877
+ :z =&gt; 25.13846652267218
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; -0.638712317615535
+ :y =&gt; 0.5486924244607113
+ :z =&gt; 20.950130428847224
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; -0.14508183975191621
+ :y =&gt; 0.33394689028747737
+ :z =&gt; 17.682443045244767
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; 0.05068097994431929
+ :y =&gt; 0.29472049416822627
+ :z =&gt; 15.16370747703133
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; 0.16303818517453336
+ :y =&gt; 0.3593125710378223
+ :z =&gt; 13.153610133173416
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; 0.2902901759204457
+ :y =&gt; 0.5430737116662134
+ :z =&gt; 11.249013970382537
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; 0.5063085533444232
+ :y =&gt; 0.9435884732079324
+ :z =&gt; 9.478624733567575
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; 0.977463982858373
+ :y =&gt; 1.8721101000702234
+ :z =&gt; 7.849260679026743
+ 3-element LArray{Float64, 1, Vector{Float64}, (:x, :y, :z)}:
+ :x =&gt; 1.1679293530469186
+ :y =&gt; 2.2524085538805103
+ :z =&gt; 7.496889342704643
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id2">
+<h3><span class="section-number">1.3.1. </span>Visualization<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>Plotting x-y-z time-series.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch01-01-ode_23_0.svg" src="_images/ch01-01-ode_23_0.svg" /></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">vars=(1,</span> <span class="pre">2,</span> <span class="pre">3)</span></code> makes a phase plot with 1st, 2nd, and the 3rd state variable. With <code class="docutils literal notranslate"><span class="pre">LabelledArrays</span></code>, you can use symbols instead of index numbers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">,</span><span class="w"> </span><span class="n">vars</span><span class="o">=</span><span class="p">(</span><span class="ss">:x</span><span class="p">,</span><span class="w"> </span><span class="ss">:y</span><span class="p">,</span><span class="w"> </span><span class="ss">:z</span><span class="p">))</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch01-01-ode_25_0.svg" src="_images/ch01-01-ode_25_0.svg" /></div>
+</div>
+<p>The plot recipe is using the interpolation to smooth the plot. You can turn off <code class="docutils literal notranslate"><span class="pre">denseplot</span></code> to see the difference.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">,</span><span class="w"> </span><span class="n">vars</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">denseplot</span><span class="o">=</span><span class="nb">false</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch01-01-ode_27_0.svg" src="_images/ch01-01-ode_27_0.svg" /></div>
+</div>
+<p>The zeroth variable in <code class="docutils literal notranslate"><span class="pre">vars</span></code> is the independent variable (usually time).</p>
+<p>The below command plots the time series of the second state variable (<code class="docutils literal notranslate"><span class="pre">y</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">,</span><span class="w"> </span><span class="n">vars</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch01-01-ode_29_0.svg" src="_images/ch01-01-ode_29_0.svg" /></div>
+</div>
+</section>
+</section>
+<section id="non-autonomous-odes">
+<h2><span class="section-number">1.4. </span>Non-autonomous ODEs<a class="headerlink" href="#non-autonomous-odes" title="Permalink to this headline">#</a></h2>
+<p>Some terms in the right-hadn-side (RHS) is time-dependent. For example, in this pendulum model</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\dot{\theta} &amp;= \omega(t) \\
+\dot{\omega} &amp;= -1.5\frac{g}{l}sin(\theta(t)) + \frac{3}{ml^2}M(t)
+\end{aligned}
+\end{split}\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\theta\)</span>: pendulum angle</p></li>
+<li><p><span class="math notranslate nohighlight">\(\omega\)</span>: angular rate</p></li>
+<li><p>M: time-dependent external torgue</p></li>
+<li><p><span class="math notranslate nohighlight">\(l\)</span>: pendulum length</p></li>
+<li><p><span class="math notranslate nohighlight">\(g\)</span>: gravitional acceleration</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">DifferentialEquations</span><span class="w"></span>
+<span class="k">using</span><span class="w"> </span><span class="n">Plots</span><span class="w"></span>
+
+<span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="w">                             </span><span class="c"># length [m]</span><span class="w"></span>
+<span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="w">                             </span><span class="c"># mass [kg]</span><span class="w"></span>
+<span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9.81</span><span class="w">                            </span><span class="c"># gravitational acceleration [m/s²]</span><span class="w"></span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">pendulum!</span><span class="p">(</span><span class="n">du</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">du</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w">                    </span><span class="c"># θ&#39;(t) = ω(t)</span><span class="w"></span>
+<span class="w">    </span><span class="n">du</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">3</span><span class="n">g</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="n">l</span><span class="p">)</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">3</span><span class="o">/</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">l</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">p</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="c"># ω&#39;(t) = -3g/(2l) sin θ(t) + 3/(ml^2)M(t)</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+
+<span class="n">θ₀</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.01</span><span class="w">                           </span><span class="c"># initial angular deflection [rad]</span><span class="w"></span>
+<span class="n">ω₀</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="w">                            </span><span class="c"># initial angular velocity [rad/s]</span><span class="w"></span>
+<span class="n">u₀</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">θ₀</span><span class="p">,</span><span class="w"> </span><span class="n">ω₀</span><span class="p">]</span><span class="w">                       </span><span class="c"># initial state vector</span><span class="w"></span>
+<span class="n">tspan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">)</span><span class="w">                  </span><span class="c"># time interval</span><span class="w"></span>
+
+<span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="o">-&gt;</span><span class="mf">0.1</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="w">                    </span><span class="c"># external torque [Nm] as the parameter fro the pendulum model</span><span class="w"></span>
+
+<span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ODEProblem</span><span class="p">(</span><span class="n">pendulum!</span><span class="p">,</span><span class="w"> </span><span class="n">u₀</span><span class="p">,</span><span class="w"> </span><span class="n">tspan</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="p">)</span><span class="w"></span>
+<span class="n">sol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span><span class="n">prob</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">xaxis</span><span class="o">=</span><span class="s">&quot;t&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;θ [rad]&quot;</span><span class="w"> </span><span class="s">&quot;ω [rad/s]&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">layout</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch01-01-ode_31_0.svg" src="_images/ch01-01-ode_31_0.svg" /></div>
+</div>
+</section>
+<section id="linear-ode-system">
+<h2><span class="section-number">1.5. </span>Linear ODE system<a class="headerlink" href="#linear-ode-system" title="Permalink to this headline">#</a></h2>
+<p>In this example, a matrix describes an ODE system.  <span class="math notranslate nohighlight">\(\dot{u} = Au\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">DifferentialEquations</span><span class="w"></span>
+<span class="k">using</span><span class="w"> </span><span class="n">Plots</span><span class="w"></span>
+
+<span class="n">A</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1.</span><span class="w"> </span><span class="mi">0</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="mi">5</span><span class="w"></span>
+<span class="w">      </span><span class="mi">4</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="w">  </span><span class="mi">4</span><span class="w"> </span><span class="o">-</span><span class="mi">3</span><span class="w"></span>
+<span class="w">     </span><span class="o">-</span><span class="mi">4</span><span class="w">  </span><span class="mi">0</span><span class="w">  </span><span class="mi">0</span><span class="w">  </span><span class="mi">1</span><span class="w"></span>
+<span class="w">      </span><span class="mi">5</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="w">  </span><span class="mi">2</span><span class="w">  </span><span class="mi">3</span><span class="p">]</span><span class="w"></span>
+
+<span class="n">u0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">tspan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)</span><span class="w"></span>
+<span class="n">f</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="o">*</span><span class="n">u</span><span class="w"></span>
+<span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ODEProblem</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">u0</span><span class="p">,</span><span class="w"> </span><span class="n">tspan</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">sol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span><span class="n">prob</span><span class="p">)</span><span class="w"></span>
+<span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch01-01-ode_33_0.svg" src="_images/ch01-01-ode_33_0.svg" /></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.7"
+        },
+        kernelOptions: {
+            kernelName: "julia-1.7",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.7'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Learning Julia Differential Equations</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="ch01-02-sde.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Stochastic Differential Equations (SDEs) and Random ODEs (RODEs)</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Wen-Wei Tseng<br/>
+  
+      &copy; Copyright 2021.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
